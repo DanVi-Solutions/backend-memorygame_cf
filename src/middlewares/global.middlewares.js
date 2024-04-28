@@ -1,8 +1,8 @@
 import userService from '../services/user.service.js';
 
 export const validUser = async (req, res, next) => {
-    const params = req.params;
     try {
+        const params = req.params;
 
         const user = await userService.findOne(params);
         
@@ -15,6 +15,6 @@ export const validUser = async (req, res, next) => {
         next();
     }
     catch(err) {
-        return res.status(404).send({local: 'On middleware', error: err });
+        return res.status(404).send({local: 'On middleware', message: err.message });
     }
 };
