@@ -15,6 +15,6 @@ export const validUser = async (req, res, next) => {
         next();
     }
     catch(err) {
-        return res.status(404).send({local: 'On middleware', message: err.message });
+        return res.status(500).send({local: 'On middleware', message: err.message });
     }
 };

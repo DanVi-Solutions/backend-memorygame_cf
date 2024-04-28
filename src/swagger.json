@@ -1,0 +1,151 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Memory Game Promotional - Caixa Federal",
+        "description": "In this documentations you will be able to consult the API end-pointsand also test all avalible routes. do not forget to register and carry out the authorization.",
+        "contac": {
+            "name": "Daniel Rocha",
+            "email": "danielrocha.dr142@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://backend-memorygame.onrender.com",
+            "description": "Render Server"
+        },
+        {
+            "url": "http://localhost:3000",
+            "description": "Local Server"
+        }
+    ],
+    "paths": {
+        "/user/": {
+            "post": {
+                "summary": "Create a new user",
+                "description": "Route responsible for creating a new user",
+                "tags": ["User"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "Users": {
+                                    "value": {
+                                        "name": "TesterSwagger",
+                                        "email": "tester_swagger@example.com.br",
+                                        "preferences": "animals"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "500":{
+                        "description": "Unknown Error"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "get": {
+                "summary": "Search all user",
+                "description": "Route responsible for fetching all user",
+                "tags": ["User"],
+                "responses": {
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "500":{
+                        "description": "Unknown Error"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{email}": {
+            "get": {
+                "summary": "Search user by Email",
+                "description": "Route responsible for fetching all user",
+                "tags": ["User"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "email",
+                        "type": "string",
+                        "description": "User Email",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "500":{
+                        "description": "Unknown Error"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "preferences": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
