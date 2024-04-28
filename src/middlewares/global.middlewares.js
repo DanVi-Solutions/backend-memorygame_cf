@@ -1,6 +1,6 @@
-const userService = require('../services/user.service');
+import userService from '../services/user.service.js';
 
-const validUser = async (req, res, next) => {
+export const validUser = async (req, res, next) => {
     const params = req.params;
     try {
 
@@ -18,5 +18,3 @@ const validUser = async (req, res, next) => {
         return res.status(404).send({local: 'On middleware', error: err });
     }
 };
-
-module.exports = { validUser };
