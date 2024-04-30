@@ -1,6 +1,6 @@
 import userService from '../services/user.service.js';
 
-const create = async (req, res) => {
+const createUser = async (req, res) => {
     try {
         const {name, email, preferences} = req.body;
         if(!name || !email || !preferences){
@@ -24,9 +24,9 @@ const findAll = async (req, res) => {
     try {
         const users = await userService.findAllService();
 
-        if(users.length === 0){
-            return res.status(400).send({ local: 'On req', message: 'There are no registered users' });
-        };
+        // if(users.length === 0){
+        //     return res.status(400).send({ local: 'On req', message: 'There are no registered users' });
+        // };
 
         res.status(200).send(users);
     }
@@ -46,4 +46,4 @@ const findOne = async (req, res) => {
     }
 };
 
-export default { create, findAll, findOne };
+export default { createUser, findAll, findOne };
