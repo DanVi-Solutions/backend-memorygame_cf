@@ -9,7 +9,22 @@ import router from './routes/index.js';
 const port = process.env.PORT || 3000;
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+    'https://caixa-memorygame.netlify.app',
+    'http://localhost:3001'
+  ];
+
+  const corsOptionsDelegate = function (req, callback) {
+    let corsOptions;
+    if (allowedOrigins.indexOf(req.header('Origin')) !== -1) {
+      corsOptions = { origin: true };
+    } else {
+      corsOptions = { origin: false };
+    }
+    callback(null, corsOptions);
+  };
+
+app.use(cors(corsOptionsDelegate));
 app.use(express.json());
 app.use(router);
 
